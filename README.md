@@ -12,6 +12,6 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 ## Exercise #2 - First Scenario
 
 * Your boss wants you to develop an API for banking (with little to no guidance). The API should include ability to transfer funds from account A to account B. Take a stab at developing a super-flexible API, based on little we know about the requirements.
-
+* Scratch that. Let's write a test as if we were the user of this API. Note that `testTransfer` does not compile yet.
 
 
