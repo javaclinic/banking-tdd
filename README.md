@@ -28,6 +28,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Update `testTransfer` accordingly to include good test structure. Test compiles, test passes, not implemented yet.
 * Think of Account class that will hold account details (id and balance). Update the test. Test will not compile.
 * Add support for dealing with Account entities, e.g. `example.banking.dao.Accountdao`, `example.banking.dao.InMemoryAccountDao` and `example.banking.domain.Account`. Test will not compile yet.
+* QuickFix on `getId()` and `getBalance()` in test class. Add unimplemented methods. Test will compile, test throws NullPointerException (error).
 
 
 
