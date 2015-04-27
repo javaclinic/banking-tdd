@@ -20,5 +20,11 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * QuickFix on `SimpleBankingService` class and add unimplemented methods, e.g. `SimpleBankingService.transfer(...)`.
 * `testTransfer` compiles, passes, but not implemented.
 
+## Exercise #3 - Structuring Tests
+* What tests do we write next?
+* How many tests do we need to write before we are sure our code works?
+* What is a good test structure?
+* Good test should have the following structure: (a) Assemble - test setup, (b) Test Fixture - setup test data, (c) Act - call business logic, (d) Verify - assert the results are what we expect, (e) Cleanup - test cleanup.
+* Update `testTransfer` accordingly to include good test structure. Test compiles, test passes, not implemented yet.
 
 
