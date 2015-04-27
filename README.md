@@ -36,3 +36,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Update `AccountDao` interface and `InMemoryAccountDao` implementation to reflect new API change. Update `Account` to reflect new property.
 * Now, looking at `Account` entity, we should probably revise `id` account property to indicate a database primary key, which is null if the entity is not in the database yet. Update `Account` code to reflect that. Add other override methods from `java.lang.Object`, e.g. `hashCode(..)`, `equals(..)` and `toString()`.
 * We just thought of few test cases. Add test cases to the test class, e.g. `testAccountIdIsNullIfNotInDatabase()`, `testInsufficientFunds()` and `testAccountNotFoundInGet()` and mark them not implemented.
+* Update `AccountDao` to include update account feature. Finish implementation of the `SimpleBankingService`. Test compiles. Test has an unexpected error, a `NullPointerException` bug. 

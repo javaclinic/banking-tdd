@@ -18,4 +18,9 @@ public interface AccountDao {
 	 */
 	Account find(int id);
 	
+	/**
+	 * Updates the account (or saves new one if one doesn't exist).
+	 */
+	void save(Account account);
+	
 }
