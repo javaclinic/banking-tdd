@@ -8,11 +8,27 @@ import example.banking.domain.Account;
 
 /**
  * InMemoryAccountDao uses in-memory Map to store accounts.
+ * 
+ * This implementation is a Singleton.
+ * 
  */
 public class InMemoryAccountDao implements AccountDao {
 
 	private Map<Integer, Account> database = new HashMap<>();
 	private static AtomicInteger counter = new AtomicInteger(0);
+
+	private static InMemoryAccountDao instance = new InMemoryAccountDao();
+
+	private InMemoryAccountDao() {
+
+	}
+
+	/**
+	 * Returns singleton instance of InMemoryAccountDao.
+	 */
+	public static InMemoryAccountDao getInstance() {
+		return instance;
+	}
 
 	@Override
 	public Account create(String owner, double balance) {

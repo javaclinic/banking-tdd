@@ -45,3 +45,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Suggestion 1: Inject AccountDao entity into `transfer(...)` method.
 * Suggestion 2: Make database Map static in `InMemoryDao`.
 * Suggestion 3: Instantiate `AccountDao` instance in service. Add `getDao()` to `SimpleBankingService` implementation.
+* Suggestion 4: Use singleton for `AccountDao` instance.
