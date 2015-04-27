@@ -43,3 +43,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * It seems a new `AccountDao` instance is created every time we run `transfer(...)` method.
 * Fix the bug.
 * Suggestion 1: Inject AccountDao entity into `transfer(...)` method.
+* Suggestion 2: Make database Map static in `InMemoryDao`.
