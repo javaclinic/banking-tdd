@@ -13,5 +13,12 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 
 * Your boss wants you to develop an API for banking (with little to no guidance). The API should include ability to transfer funds from account A to account B. Take a stab at developing a super-flexible API, based on little we know about the requirements.
 * Scratch that. Let's write a test as if we were the user of this API. Note that `testTransfer` does not compile yet.
+* QuickFix on `BankingService`. Create interface in `src/main/java` called `example.banking.services.BankingService`.
+* QuickFix on `SimpleBankingService`. Create the implementation class, also in `src/main`java`, e.g. `example.banking.services.SimpleBankingService`.
+* Extract local variables, instead of the hard-coded values in `transfer(1,2,1000.0)` method, e.g. `int fromAccountId = 1`, `int toAccountId = 2` and `double amount = 1000.0` and update the method, e.g. `transfer(fromAccountId, toAccountId, amount)`.
+* QuickFix on `teller.transfer(...)` and create new method in `BankingService` interface and corresponding `SimpleBankingService`.
+* QuickFix on `SimpleBankingService` class and add unimplemented methods, e.g. `SimpleBankingService.transfer(...)`.
+* `testTransfer` compiles, passes, but not implemented.
+
 
 

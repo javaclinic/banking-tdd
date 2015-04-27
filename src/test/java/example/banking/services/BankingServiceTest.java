@@ -12,6 +12,9 @@ public class BankingServiceTest {
 	@Test
 	public void testTransfer() throws Exception {
 		BankingService teller = new SimpleBankingService();
-		teller.transfer(1,2, 1000.0);
+		int fromAccountId = 1;
+		int toAccountId = 2;
+		double amount = 1000.0;
+		teller.transfer(fromAccountId,toAccountId, amount);
 	}
 }
