@@ -1,6 +1,7 @@
 package example.banking.services;
 
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Test;
 
 import example.banking.dao.AccountDao;
@@ -41,5 +42,20 @@ public class BankingServiceTest {
 		
 		// Cleanup - test cleanup.
 		
+	}
+	
+	@Test
+	public void testAccountIdIsNullIfNotInDatabase() throws Exception {
+		Assume.assumeNoException(new UnsupportedOperationException("Not yet implemented"));
+	}
+	
+	@Test
+	public void testAccountNotFoundInGet() throws Exception {
+		Assume.assumeNoException(new UnsupportedOperationException("Not yet implemented"));
+	}
+	
+	@Test
+	public void testInsufficientFunds() throws Exception {
+		Assume.assumeNoException(new UnsupportedOperationException("Not yet implemented"));
 	}
 }
