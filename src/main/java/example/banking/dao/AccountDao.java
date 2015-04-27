@@ -4,5 +4,5 @@ import example.banking.domain.Account;
 
 public interface AccountDao {
 	Account create(int i, double d);
-	Account find(int fromAccountId);
+	Account find(int id);
 }
