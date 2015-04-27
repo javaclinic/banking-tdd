@@ -32,7 +32,7 @@ public class BankingServiceTest {
 		int toAccountId = toAccount.getId();
 		
 		// Act - call business logic
-		teller.transfer(fromAccountId,toAccountId, amount);
+		teller.transfer(dao, fromAccountId,toAccountId, amount);
 		
 		// Verify - assert the results are what we expect
 		Account finalFromAccount = dao.find(fromAccountId);
