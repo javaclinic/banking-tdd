@@ -26,5 +26,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * What is a good test structure?
 * Good test should have the following structure: (a) Assemble - test setup, (b) Test Fixture - setup test data, (c) Act - call business logic, (d) Verify - assert the results are what we expect, (e) Cleanup - test cleanup.
 * Update `testTransfer` accordingly to include good test structure. Test compiles, test passes, not implemented yet.
+* Think of Account class that will hold account details (id and balance). Update the test. Test will not compile.
+
 
 
