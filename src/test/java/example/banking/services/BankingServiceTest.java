@@ -5,7 +5,6 @@ import org.junit.Assume;
 import org.junit.Test;
 
 import example.banking.dao.AccountDao;
-import example.banking.dao.InMemoryAccountDao;
 import example.banking.domain.Account;
 
 public class BankingServiceTest {
@@ -21,8 +20,8 @@ public class BankingServiceTest {
 	public void testTransfer() throws Exception {
 		
 		// Assemble - test setup
-		AccountDao dao = new InMemoryAccountDao();
-		BankingService teller = new SimpleBankingService();
+		SimpleBankingService teller = new SimpleBankingService();
+		AccountDao dao = teller.getDao();
 		
 		// Test Fixture - setup test data
 		double amount = 1000.0;
