@@ -25,8 +25,8 @@ public class BankingServiceTest {
 		
 		// Test Fixture - setup test data
 		double amount = 1000.0;
-		Account fromAccount = dao.create(1,10_000.0);
-		Account toAccount = dao.create(2,1_000.0);
+		Account fromAccount = dao.create("Jane Doe",10_000.0);
+		Account toAccount = dao.create("John Doe",1_000.0);
 		int fromAccountId = fromAccount.getId();
 		int toAccountId = toAccount.getId();
 		

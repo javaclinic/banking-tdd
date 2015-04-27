@@ -2,7 +2,20 @@ package example.banking.dao;
 
 import example.banking.domain.Account;
 
+/**
+ * AccountDao interface is a DAO interface for managing Account entities.
+ * 
+ */
 public interface AccountDao {
-	Account create(int i, double d);
+	
+	/**
+	 * Creates a new account in the data layer. The data layer will assign a new id.
+	 */
+	Account create(String owner, double balance);
+	
+	/**
+	 * Retrieves the account from the data layer with the given primary key.
+	 */
 	Account find(int id);
+	
 }
