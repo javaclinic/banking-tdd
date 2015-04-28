@@ -1,5 +1,7 @@
 package example.banking.domain;
 
+import example.banking.services.InsufficientBalanceException;
+
 /**
  * Account entity.
  */
@@ -101,6 +103,16 @@ public class Account {
 	public String toString() {
 		return String.format("Account [id=%s, owner=%s, balance=%s]", id,
 				owner, balance);
+	}
+
+	public void withdrawFunds(double amount) throws InsufficientBalanceException {
+		if ( this.balance < amount )
+			throw new InsufficientBalanceException(this, amount);
+		this.balance -= amount;
+	}
+
+	public void addFunds(double amount) {
+		this.balance += amount;
 	}
 
 }

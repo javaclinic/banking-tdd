@@ -74,3 +74,14 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Let's add support for additional exception, e.g. `InsufficientAccountBalance`. Update test cases first. Update data layer and service layer. Test compiles, test passes.
 * Add test case with negative transfer amounts.
 * Reject negative transfer amounts, e.g. throw IllegalArgumentException if amount is negative.
+
+# Exercise #9 - Refactoring
+* What's refactoring?
+* Why should we refactor?
+* When should we refactor?
+* What's a code smell?
+* Why refactoring works?
+* What do you tell your manager?
+* Problems with refactoring?
+* When shouldn't you refactor?
+* Let's refactor our code, and move logic for adding funds to account, and withdrawing funds from account to the `Account` entity, to fix the `FeatureEnvy` smell.

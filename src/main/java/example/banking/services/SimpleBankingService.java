@@ -26,15 +26,8 @@ public class SimpleBankingService implements BankingService {
 		Account fromAccount = dao.find(fromAccountId);
 		Account toAccount = dao.find(toAccountId);
 
-		double fromBalance = fromAccount.getBalance();
-		if (fromBalance < amount)
-			throw new InsufficientBalanceException(fromAccount, amount);
-		fromBalance -= amount;
-		fromAccount.setBalance(fromBalance);
-
-		double toBalance = toAccount.getBalance();
-		toBalance += amount;
-		toAccount.setBalance(toBalance);
+		fromAccount.withdrawFunds(amount);
+		toAccount.addFunds(amount);
 
 		dao.save(fromAccount);
 		dao.save(toAccount);
