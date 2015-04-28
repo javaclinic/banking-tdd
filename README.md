@@ -109,3 +109,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Prepare class with static methods for testing, e.g. `@PrepareForTesting(ConfigurationService.class)` either class-level or method-level.
 * User `PowerMock.mockStatic(...)` to mock static methods.
 * Feed real implementations for now, just to test if the PowerMock-ing works.
+* Try removing any of two annotations, and observe the error messages.
