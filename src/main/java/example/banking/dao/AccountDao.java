@@ -16,8 +16,12 @@ public interface AccountDao {
 
 	/**
 	 * Retrieves the account from the data layer with the given primary key.
+	 * 
+	 * @param id
+	 * @return
+	 * @throws AccountNotFoundException
 	 */
-	Account find(int id);
+	Account find(int id) throws AccountNotFoundException;
 
 	/**
 	 * Updates the account (or saves new one if one doesn't exist).

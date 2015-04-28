@@ -5,6 +5,7 @@ import org.junit.Assume;
 import org.junit.Test;
 
 import example.banking.dao.AccountDao;
+import example.banking.dao.AccountNotFoundException;
 import example.banking.dao.InMemoryAccountDao;
 import example.banking.domain.Account;
 
@@ -56,8 +57,12 @@ public class BankingServiceTest {
 	public void testAccountNotFoundInGet() {
 		AccountDao dao = new InMemoryAccountDao();
 		int accountId = 1;
-		Account account = dao.find(accountId);
-		Assert.assertNull(account);
+		try {
+			dao.find(accountId);
+			Assert.fail("Did not catch AccountNotFoundException.");
+		} catch (AccountNotFoundException e) {
+			Assert.assertNotNull(e);
+		}
 	}
 
 	@Test

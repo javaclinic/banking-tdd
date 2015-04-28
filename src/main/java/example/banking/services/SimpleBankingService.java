@@ -1,6 +1,7 @@
 package example.banking.services;
 
 import example.banking.dao.AccountDao;
+import example.banking.dao.AccountNotFoundException;
 import example.banking.domain.Account;
 
 /**
@@ -19,11 +20,8 @@ public class SimpleBankingService implements BankingService {
 			throws AccountNotFoundException {
 
 		Account fromAccount = dao.find(fromAccountId);
-		if ( fromAccount == null ) throw new AccountNotFoundException();
-		
 		Account toAccount = dao.find(toAccountId);
-		if ( toAccount == null ) throw new AccountNotFoundException();
-		
+
 		double fromBalance = fromAccount.getBalance();
 		fromBalance -= amount;
 		fromAccount.setBalance(fromBalance);

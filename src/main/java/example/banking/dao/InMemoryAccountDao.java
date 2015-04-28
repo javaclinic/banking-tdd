@@ -36,8 +36,10 @@ public class InMemoryAccountDao implements AccountDao {
 	}
 
 	@Override
-	public Account find(int id) {
-		return database.get(id);
+	public Account find(int id) throws AccountNotFoundException {
+		Account found = database.get(id);
+		if ( found == null ) throw new AccountNotFoundException();
+		return found;
 	}
 
 	@Override

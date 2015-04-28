@@ -1,5 +1,7 @@
 package example.banking.services;
 
+import example.banking.dao.AccountNotFoundException;
+
 /**
  * BankingService API for dealing with accounts.
  */
