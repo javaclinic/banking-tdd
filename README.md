@@ -67,6 +67,10 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 
 # Exercise #8 - Adding Exceptions
 * It would be great to handle unusual (exceptional) situations. Let's add `AccountNotFoundException`, start with test cases first. Implement empty exception for now.
+* We should add another test case for transferring money from an account that doesn't exist, and another for transferring money to account that doesn't exist, e.g. `testTransferMoneyFromNonExistingAccount()` and e.g. `testTransferMoneyToNonExistingAccount()`.
+
+
+
 
 
 

@@ -54,20 +54,53 @@ public class BankingServiceTest {
 
 	@Test
 	public void testAccountNotFoundInGet() {
-
-		// Assemble - test setup
 		AccountDao dao = new InMemoryAccountDao();
-
-		// Test Fixture - setup test data
 		int accountId = 1;
-
-		// Act - call business logic
 		Account account = dao.find(accountId);
-
-		// Verify - assert the results are what we expect
 		Assert.assertNull(account);
+	}
 
-		// Cleanup - test cleanup
+	@Test
+	public void testTransferMoneyFromNonExistingAccount() {
+
+		AccountDao dao = new InMemoryAccountDao();
+		BankingService teller = new SimpleBankingService(dao);
+
+		double amount = 1000.0;
+		Account toAccount = dao.create("Jane Doe", 1_000.0);
+		int toAccountId = toAccount.getId();
+		int nonExistingAccountId = 3;
+
+		try {
+			Assert.assertNull(dao.find(nonExistingAccountId));
+			Assert.assertNotNull(dao.find(toAccountId));
+			teller.transfer(nonExistingAccountId, toAccountId, amount);
+			Assert.fail("Did not throw AccountNotFoundException.");
+		} catch (AccountNotFoundException e) {
+			Assert.assertNotNull(e);
+		}
+
+	}
+
+	@Test
+	public void testTransferMoneyToNonExistingAccount() {
+
+		AccountDao dao = new InMemoryAccountDao();
+		BankingService teller = new SimpleBankingService(dao);
+
+		double amount = 1000.0;
+		Account fromAccount = dao.create("Jane Doe", 1_000.0);
+		int fromAccountId = fromAccount.getId();
+		int nonExistingAccountId = 3;
+
+		try {
+			Assert.assertNull(dao.find(nonExistingAccountId));
+			Assert.assertNotNull(dao.find(fromAccountId));
+			teller.transfer(fromAccountId, nonExistingAccountId, amount);
+			Assert.fail("Did not throw AccountNotFoundException.");
+		} catch (AccountNotFoundException e) {
+			Assert.assertNotNull(e);
+		}
 
 	}
 
