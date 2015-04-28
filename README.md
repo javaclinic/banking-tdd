@@ -73,3 +73,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Better approach is to initialize exception with objects it needs to build a message, to enforce consistent message across the application. The result is a better API overall. Test compiles, test passes.
 * Let's add support for additional exception, e.g. `InsufficientAccountBalance`. Update test cases first. Update data layer and service layer. Test compiles, test passes.
 * Add test case with negative transfer amounts.
+* Reject negative transfer amounts, e.g. throw IllegalArgumentException if amount is negative.

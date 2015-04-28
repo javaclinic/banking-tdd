@@ -156,14 +156,14 @@ public class BankingServiceTest {
 		Account toAccount = dao.create("Jane Doe", 1_000.0);
 		int toAccountId = toAccount.getId();
 
-		teller.transfer(fromAccountId, toAccountId, amount);
-
-		Account finalFromAccount = dao.find(fromAccountId);
-		Account finalToAccount = dao.find(toAccountId);
-		Assert.assertEquals(11_000.0, finalFromAccount.getBalance(),
-				ERROR_TOLERANCE);
-		Assert.assertEquals(-9_000.0, finalToAccount.getBalance(),
-				ERROR_TOLERANCE);
+		try {
+			teller.transfer(fromAccountId, toAccountId, amount);
+			Assert.fail("Did not throw IllegalArgumentException.");
+		} catch (IllegalArgumentException e) {
+			Assert.assertNotNull(e);
+			String expectedMessage = "Amount must be > 0, currently is " + amount;
+			Assert.assertEquals(expectedMessage, e.getMessage());
+		}
 
 	}
 

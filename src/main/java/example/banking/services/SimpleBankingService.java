@@ -19,6 +19,10 @@ public class SimpleBankingService implements BankingService {
 	public void transfer(int fromAccountId, int toAccountId, double amount)
 			throws AccountNotFoundException, InsufficientBalanceException {
 
+		if (amount < 0)
+			throw new IllegalArgumentException(
+					"Amount must be > 0, currently is " + amount);
+
 		Account fromAccount = dao.find(fromAccountId);
 		Account toAccount = dao.find(toAccountId);
 
