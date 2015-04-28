@@ -11,7 +11,9 @@ public interface BankingService {
 	 * @param fromAccountId
 	 * @param toAccountId
 	 * @param amount
+	 * @throws AccountNotFoundException
 	 */
-	void transfer(int fromAccountId, int toAccountId, double amount);
+	void transfer(int fromAccountId, int toAccountId, double amount)
+			throws AccountNotFoundException;
 
 }

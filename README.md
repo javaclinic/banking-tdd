@@ -65,6 +65,10 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Let's implement the other test as well, e.g. `testAccountIdIsNullIfNotInDatabase()`. We might need to update our `Account` class to include default constructor.
 * General formatting cleanup.
 
+# Exercise #8 - Adding Exceptions
+* It would be great to handle unusual (exceptional) situations. Let's add `AccountNotFoundException`, start with test cases first. Implement empty exception for now.
+
+
 
 
 

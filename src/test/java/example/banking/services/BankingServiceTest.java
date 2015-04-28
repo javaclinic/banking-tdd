@@ -18,7 +18,7 @@ public class BankingServiceTest {
 	}
 
 	@Test
-	public void testTransfer() throws Exception {
+	public void testTransfer() throws AccountNotFoundException {
 
 		// Assemble - test setup
 		AccountDao dao = new InMemoryAccountDao();
@@ -47,13 +47,13 @@ public class BankingServiceTest {
 	}
 
 	@Test
-	public void testAccountIdIsNullIfNotInDatabase() throws Exception {
+	public void testAccountIdIsNullIfNotInDatabase() {
 		Account account = new Account();
 		Assert.assertNull(account.getId());
 	}
 
 	@Test
-	public void testAccountNotFoundInGet() throws Exception {
+	public void testAccountNotFoundInGet() {
 
 		// Assemble - test setup
 		AccountDao dao = new InMemoryAccountDao();
