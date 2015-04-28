@@ -10,6 +10,12 @@ public class Account {
 	private double balance;
 
 	/**
+	 * Default constructor.
+	 */
+	public Account() {
+	}
+
+	/**
 	 * Creates new account.
 	 * 
 	 * @param id

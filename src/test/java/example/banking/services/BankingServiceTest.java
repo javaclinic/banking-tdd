@@ -46,7 +46,8 @@ public class BankingServiceTest {
 	
 	@Test
 	public void testAccountIdIsNullIfNotInDatabase() throws Exception {
-		Assume.assumeNoException(new UnsupportedOperationException("Not yet implemented"));
+		Account account = new Account();
+		Assert.assertNull(account.getId());
 	}
 	
 	@Test
