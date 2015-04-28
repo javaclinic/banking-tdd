@@ -29,8 +29,8 @@ public class SimpleBankingService implements BankingService {
 		fromAccount.withdrawFunds(amount);
 		toAccount.addFunds(amount);
 
-		dao.save(fromAccount);
-		dao.save(toAccount);
+		// dao.save(fromAccount);
+		// dao.save(toAccount);
 
 	}
 

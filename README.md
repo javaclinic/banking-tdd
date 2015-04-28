@@ -91,3 +91,5 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * There are several mocking frameworks, e.g. `Mockito`, `EasyMock`, `JMockit`, etc. We will use `Mockito`.
 * First, add support for Mockito libraries in `pom.xml`.
 * Refactor `testTransfer` to use Mockito framework.
+* Should the test fail if we forget to update data layer (database)? Mockito just ignores the call `AccountDao.save(...)` method to mock object. We should verify the interaction.
+* Intentionally introduce the bug by not saving accounts in `SimpleBankingService.transfer(...)` method. Test compiles, test fails.

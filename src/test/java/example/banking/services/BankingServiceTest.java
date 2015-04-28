@@ -204,6 +204,9 @@ public class BankingServiceTest {
 
 		teller.transfer(fromAccountId, toAccountId, amount);
 
+		Mockito.verify(dao).save(fromAccount);
+		Mockito.verify(dao).save(toAccount);
+
 		Account finalFromAccount = dao.find(fromAccountId);
 		Account finalToAccount = dao.find(toAccountId);
 		Assert.assertEquals(9_000.0, finalFromAccount.getBalance(),
