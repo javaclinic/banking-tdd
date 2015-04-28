@@ -105,3 +105,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Add new test class, e.g. `BankingServiceWithPowerMock`. Create new test method, e.g. `testTransferWithPowerMock()` that copies old `testTransfer()`. Instantiate dao and service objects using `ConfigurationService` static methods. Test compiles, test fails with error.
 * How do we mock objects that have static methods and final fields?
 * Add support for PowerMock in `pom.xml`.
+* Add runner, e.g. `@RunWith(PowerMockRunner.class)`.
+* Prepare class with static methods for testing, e.g. `@PrepareForTesting(ConfigurationService.class)` either class-level or method-level.
+* User `PowerMock.mockStatic(...)` to mock static methods.
+* Feed real implementations for now, just to test if the PowerMock-ing works.
