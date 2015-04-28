@@ -72,3 +72,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Let's add some more details to our `AccountNotFoundException`. Typical thing to do is instantiate an exception with some meaningful message. Try it out. What are some down sides of this approach?
 * Better approach is to initialize exception with objects it needs to build a message, to enforce consistent message across the application. The result is a better API overall. Test compiles, test passes.
 * Let's add support for additional exception, e.g. `InsufficientAccountBalance`. Update test cases first. Update data layer and service layer. Test compiles, test passes.
+* Add test case with negative transfer amounts.
