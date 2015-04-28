@@ -1,6 +1,12 @@
 package example.banking.services;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -15,7 +21,7 @@ public class BankingServiceTest {
 
 	@Test
 	public void testHelloWorld() throws Exception {
-		Assert.assertEquals(1, 1);
+		assertEquals(1, 1);
 	}
 
 	@Test
@@ -39,10 +45,8 @@ public class BankingServiceTest {
 		// Verify - assert the results are what we expect
 		Account finalFromAccount = dao.find(fromAccountId);
 		Account finalToAccount = dao.find(toAccountId);
-		Assert.assertEquals(9_000.0, finalFromAccount.getBalance(),
-				ERROR_TOLERANCE);
-		Assert.assertEquals(2_000.0, finalToAccount.getBalance(),
-				ERROR_TOLERANCE);
+		assertEquals(9_000.0, finalFromAccount.getBalance(), ERROR_TOLERANCE);
+		assertEquals(2_000.0, finalToAccount.getBalance(), ERROR_TOLERANCE);
 
 		// Cleanup - test cleanup.
 
@@ -51,7 +55,7 @@ public class BankingServiceTest {
 	@Test
 	public void testAccountIdIsNullIfNotInDatabase() {
 		Account account = new Account();
-		Assert.assertNull(account.getId());
+		assertNull(account.getId());
 	}
 
 	@Test
@@ -60,11 +64,11 @@ public class BankingServiceTest {
 		int accountId = 1;
 		try {
 			dao.find(accountId);
-			Assert.fail("Did not catch AccountNotFoundException.");
+			fail("Did not catch AccountNotFoundException.");
 		} catch (AccountNotFoundException e) {
-			Assert.assertNotNull(e);
-			Assert.assertEquals(accountId, e.getId().intValue());
-			Assert.assertEquals("Account " + accountId + " was not found.",
+			assertNotNull(e);
+			assertEquals(accountId, e.getId().intValue());
+			assertEquals("Account " + accountId + " was not found.",
 					e.getMessage());
 		}
 	}
@@ -82,14 +86,14 @@ public class BankingServiceTest {
 		int nonExistingAccountId = 3;
 
 		try {
-			Assert.assertNotNull(dao.find(toAccountId));
+			assertNotNull(dao.find(toAccountId));
 			teller.transfer(nonExistingAccountId, toAccountId, amount);
-			Assert.fail("Did not throw AccountNotFoundException.");
+			fail("Did not throw AccountNotFoundException.");
 		} catch (AccountNotFoundException e) {
-			Assert.assertNotNull(e);
-			Assert.assertEquals(nonExistingAccountId, e.getId().intValue());
-			Assert.assertEquals("Account " + nonExistingAccountId
-					+ " was not found.", e.getMessage());
+			assertNotNull(e);
+			assertEquals(nonExistingAccountId, e.getId().intValue());
+			assertEquals("Account " + nonExistingAccountId + " was not found.",
+					e.getMessage());
 		}
 
 	}
@@ -107,14 +111,14 @@ public class BankingServiceTest {
 		int nonExistingAccountId = 3;
 
 		try {
-			Assert.assertNotNull(dao.find(fromAccountId));
+			assertNotNull(dao.find(fromAccountId));
 			teller.transfer(fromAccountId, nonExistingAccountId, amount);
-			Assert.fail("Did not throw AccountNotFoundException.");
+			fail("Did not throw AccountNotFoundException.");
 		} catch (AccountNotFoundException e) {
-			Assert.assertNotNull(e);
-			Assert.assertEquals(nonExistingAccountId, e.getId().intValue());
-			Assert.assertEquals("Account " + nonExistingAccountId
-					+ " was not found.", e.getMessage());
+			assertNotNull(e);
+			assertEquals(nonExistingAccountId, e.getId().intValue());
+			assertEquals("Account " + nonExistingAccountId + " was not found.",
+					e.getMessage());
 		}
 
 	}
@@ -133,13 +137,13 @@ public class BankingServiceTest {
 
 		try {
 			teller.transfer(fromAccountId, toAccountId, amount);
-			Assert.fail("Did not throw InsufficientBalanceException.");
+			fail("Did not throw InsufficientBalanceException.");
 		} catch (InsufficientBalanceException e) {
-			Assert.assertNotNull(e);
-			Assert.assertEquals(fromAccountId, e.getAccountId().intValue());
+			assertNotNull(e);
+			assertEquals(fromAccountId, e.getAccountId().intValue());
 			String expectedMessage = String.format(
 					"Unable to withdraw $%.2f from %s", amount, fromAccount);
-			Assert.assertEquals(expectedMessage, e.getMessage());
+			assertEquals(expectedMessage, e.getMessage());
 		}
 
 	}
@@ -159,12 +163,12 @@ public class BankingServiceTest {
 
 		try {
 			teller.transfer(fromAccountId, toAccountId, amount);
-			Assert.fail("Did not throw IllegalArgumentException.");
+			fail("Did not throw IllegalArgumentException.");
 		} catch (IllegalArgumentException e) {
-			Assert.assertNotNull(e);
+			assertNotNull(e);
 			String expectedMessage = "Amount must be > 0, currently is "
 					+ amount;
-			Assert.assertEquals(expectedMessage, e.getMessage());
+			assertEquals(expectedMessage, e.getMessage());
 		}
 
 	}
@@ -188,32 +192,30 @@ public class BankingServiceTest {
 		AccountDao dao = Mockito.mock(AccountDao.class);
 
 		// script mock object
-		Mockito.when(dao.find(fromAccountId)).thenReturn(fromAccount);
-		Mockito.when(dao.find(toAccountId)).thenReturn(toAccount);
+		when(dao.find(fromAccountId)).thenReturn(fromAccount);
+		when(dao.find(toAccountId)).thenReturn(toAccount);
 
-		Assert.assertEquals(fromBalance, fromAccount.getBalance(), 0.00_001);
-		Assert.assertEquals(toBalance, toAccount.getBalance(), 0.00_001);
+		assertEquals(fromBalance, fromAccount.getBalance(), 0.00_001);
+		assertEquals(toBalance, toAccount.getBalance(), 0.00_001);
 
-		Assert.assertEquals(fromAccountId, fromAccount.getId().intValue());
-		Assert.assertEquals(toAccountId, toAccount.getId().intValue());
+		assertEquals(fromAccountId, fromAccount.getId().intValue());
+		assertEquals(toAccountId, toAccount.getId().intValue());
 
-		Assert.assertEquals(fromName, fromAccount.getOwner());
-		Assert.assertEquals(toName, toAccount.getOwner());
+		assertEquals(fromName, fromAccount.getOwner());
+		assertEquals(toName, toAccount.getOwner());
 
 		BankingService teller = new SimpleBankingService(dao);
 
 		teller.transfer(fromAccountId, toAccountId, amount);
 
-		Mockito.verify(dao, Mockito.times(2)).save(Mockito.any(Account.class));
-		Mockito.verify(dao, Mockito.never()).create(Mockito.anyString(),
+		verify(dao, Mockito.times(2)).save(Mockito.any(Account.class));
+		verify(dao, Mockito.never()).create(Mockito.anyString(),
 				Mockito.anyDouble());
 
 		Account finalFromAccount = dao.find(fromAccountId);
 		Account finalToAccount = dao.find(toAccountId);
-		Assert.assertEquals(9_000.0, finalFromAccount.getBalance(),
-				ERROR_TOLERANCE);
-		Assert.assertEquals(2_000.0, finalToAccount.getBalance(),
-				ERROR_TOLERANCE);
+		assertEquals(9_000.0, finalFromAccount.getBalance(), ERROR_TOLERANCE);
+		assertEquals(2_000.0, finalToAccount.getBalance(), ERROR_TOLERANCE);
 
 	}
 

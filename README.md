@@ -87,7 +87,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Let's refactor our code, and move logic for adding funds to account, and withdrawing funds from account to the `Account` entity, to fix the `FeatureEnvy` smell.
 * Let's refactor our code again, use setters and getters for dealing with balances within `Account` entity.
 
-## Exercise #10 - Mocking Objects
+## Exercise #10 - Mocking Objects with Mockito
 * There are several mocking frameworks, e.g. `Mockito`, `EasyMock`, `JMockit`, etc. We will use `Mockito`.
 * First, add support for Mockito libraries in `pom.xml`.
 * Refactor `testTransfer` to use Mockito framework.
@@ -96,3 +96,5 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Remove introduced bug. Test compiles, test passes.
 * We could use helper Mockito methods to describe and verify interaction. Rewrite your test using `Mockito.times(x)` and `Mockito.any()`.
 * We could also ensure mock object does not call certain methods. Rewrite your test using `Mockito.never()`, and other `Mockity.any*()` calls.
+* Use static imports with `Mockito.*` and `Assert.*`.
+* Find more details online in Mockito API.
