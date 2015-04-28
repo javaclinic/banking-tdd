@@ -46,3 +46,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Suggestion 2: Make database Map static in `InMemoryDao`.
 * Suggestion 3: Instantiate `AccountDao` instance in service. Add `getDao()` to `SimpleBankingService` implementation.
 * Suggestion 4: Use singleton for `AccountDao` instance.
+* Suggestion 5: Use configuration service, e.g. `example.banking.services.ConfigurationService`. Test compiles and passes.
+
+
+

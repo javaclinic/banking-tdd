@@ -5,8 +5,8 @@ import org.junit.Assume;
 import org.junit.Test;
 
 import example.banking.dao.AccountDao;
-import example.banking.dao.InMemoryAccountDao;
 import example.banking.domain.Account;
+
 
 public class BankingServiceTest {
 	
@@ -21,8 +21,8 @@ public class BankingServiceTest {
 	public void testTransfer() throws Exception {
 		
 		// Assemble - test setup
-		BankingService teller = new SimpleBankingService();
-		AccountDao dao = InMemoryAccountDao.getInstance();
+		BankingService teller = ConfigurationService.getBankingService();
+		AccountDao dao = ConfigurationService.getAccountDao();
 		
 		// Test Fixture - setup test data
 		double amount = 1000.0;
@@ -58,4 +58,5 @@ public class BankingServiceTest {
 	public void testInsufficientFunds() throws Exception {
 		Assume.assumeNoException(new UnsupportedOperationException("Not yet implemented"));
 	}
+	
 }
