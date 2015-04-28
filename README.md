@@ -86,3 +86,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * When shouldn't you refactor?
 * Let's refactor our code, and move logic for adding funds to account, and withdrawing funds from account to the `Account` entity, to fix the `FeatureEnvy` smell.
 * Let's refactor our code again, use setters and getters for dealing with balances within `Account` entity.
+
+## Exercise #10 - Mocking Objects
+* There are several mocking frameworks, e.g. `Mockito`, `EasyMock`, `JMockit`, etc. We will use `Mockito`.
+* First, add support for Mockito libraries in `pom.xml`.
