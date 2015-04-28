@@ -14,6 +14,7 @@ public interface BankingService {
 	 * @param toAccountId
 	 * @param amount
 	 * @throws AccountNotFoundException
+	 *             if any of the source or target accounts does not exist
 	 */
 	void transfer(int fromAccountId, int toAccountId, double amount)
 			throws AccountNotFoundException;

@@ -62,6 +62,8 @@ public class BankingServiceTest {
 			Assert.fail("Did not catch AccountNotFoundException.");
 		} catch (AccountNotFoundException e) {
 			Assert.assertNotNull(e);
+			Assert.assertEquals(accountId, e.getId().intValue());
+			Assert.assertEquals("Account " + accountId + " was not found.", e.getMessage());
 		}
 	}
 
@@ -77,12 +79,12 @@ public class BankingServiceTest {
 		int nonExistingAccountId = 3;
 
 		try {
-			Assert.assertNull(dao.find(nonExistingAccountId));
 			Assert.assertNotNull(dao.find(toAccountId));
 			teller.transfer(nonExistingAccountId, toAccountId, amount);
 			Assert.fail("Did not throw AccountNotFoundException.");
 		} catch (AccountNotFoundException e) {
 			Assert.assertNotNull(e);
+			Assert.assertEquals(nonExistingAccountId, e.getId().intValue());
 			Assert.assertEquals("Account " + nonExistingAccountId + " was not found.", e.getMessage());
 		}
 
@@ -100,12 +102,13 @@ public class BankingServiceTest {
 		int nonExistingAccountId = 3;
 
 		try {
-			Assert.assertNull(dao.find(nonExistingAccountId));
 			Assert.assertNotNull(dao.find(fromAccountId));
 			teller.transfer(fromAccountId, nonExistingAccountId, amount);
 			Assert.fail("Did not throw AccountNotFoundException.");
 		} catch (AccountNotFoundException e) {
 			Assert.assertNotNull(e);
+			Assert.assertEquals(nonExistingAccountId, e.getId().intValue());
+			Assert.assertEquals("Account " + nonExistingAccountId + " was not found.", e.getMessage());
 		}
 
 	}

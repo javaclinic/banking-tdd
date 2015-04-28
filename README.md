@@ -69,12 +69,5 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * It would be great to handle unusual (exceptional) situations. Let's add `AccountNotFoundException`, start with test cases first. Implement empty exception for now.
 * We should add another test case for transferring money from an account that doesn't exist, and another for transferring money to account that doesn't exist, e.g. `testTransferMoneyFromNonExistingAccount()` and e.g. `testTransferMoneyToNonExistingAccount()`.
 * Now, we might want to move `AccountNotFoundException` from services layer to data layer. What's involved in changing the API? Does our code compile? Did our tests break? Fix the issues.
-* Let's add some more details to our `AccountNotFoundException`. Typical thing to do is instantiate an exception with a text message. Try it out. What are some down sides of this?
-
-
-
-
-
-
-
-
+* Let's add some more details to our `AccountNotFoundException`. Typical thing to do is instantiate an exception with some meaningful message. Try it out. What are some down sides of this approach?
+* Better approach is to initialize exception with objects it needs to build a message, to enforce consistent message across the application. The result is a better API overall. Test compiles, test passes.

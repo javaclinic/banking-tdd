@@ -20,6 +20,7 @@ public interface AccountDao {
 	 * @param id
 	 * @return
 	 * @throws AccountNotFoundException
+	 *             if account is not found
 	 */
 	Account find(int id) throws AccountNotFoundException;
 
