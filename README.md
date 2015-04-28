@@ -90,3 +90,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 ## Exercise #10 - Mocking Objects
 * There are several mocking frameworks, e.g. `Mockito`, `EasyMock`, `JMockit`, etc. We will use `Mockito`.
 * First, add support for Mockito libraries in `pom.xml`.
+* Refactor `testTransfer` to use Mockito framework.

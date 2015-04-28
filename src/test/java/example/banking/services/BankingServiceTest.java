@@ -2,6 +2,7 @@ package example.banking.services;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import example.banking.dao.AccountDao;
 import example.banking.dao.AccountNotFoundException;
@@ -161,9 +162,54 @@ public class BankingServiceTest {
 			Assert.fail("Did not throw IllegalArgumentException.");
 		} catch (IllegalArgumentException e) {
 			Assert.assertNotNull(e);
-			String expectedMessage = "Amount must be > 0, currently is " + amount;
+			String expectedMessage = "Amount must be > 0, currently is "
+					+ amount;
 			Assert.assertEquals(expectedMessage, e.getMessage());
 		}
+
+	}
+
+	@Test
+	public void testTransferWithMockito() throws AccountNotFoundException,
+			InsufficientBalanceException {
+
+		double amount = 1000.0;
+		int fromAccountId = 1;
+		int toAccountId = 2;
+		String fromName = "Jane Doe";
+		String toName = "John Doe";
+		double fromBalance = 10_000.0;
+		double toBalance = 1_000.0;
+
+		Account fromAccount = new Account(fromAccountId, fromName, fromBalance);
+		Account toAccount = new Account(toAccountId, toName, toBalance);
+
+		// create mock object, mocking AccountDao interface
+		AccountDao dao = Mockito.mock(AccountDao.class);
+
+		// script mock object
+		Mockito.when(dao.find(fromAccountId)).thenReturn(fromAccount);
+		Mockito.when(dao.find(toAccountId)).thenReturn(toAccount);
+
+		Assert.assertEquals(fromBalance, fromAccount.getBalance(), 0.00_001);
+		Assert.assertEquals(toBalance, toAccount.getBalance(), 0.00_001);
+
+		Assert.assertEquals(fromAccountId, fromAccount.getId().intValue());
+		Assert.assertEquals(toAccountId, toAccount.getId().intValue());
+
+		Assert.assertEquals(fromName, fromAccount.getOwner());
+		Assert.assertEquals(toName, toAccount.getOwner());
+
+		BankingService teller = new SimpleBankingService(dao);
+
+		teller.transfer(fromAccountId, toAccountId, amount);
+
+		Account finalFromAccount = dao.find(fromAccountId);
+		Account finalToAccount = dao.find(toAccountId);
+		Assert.assertEquals(9_000.0, finalFromAccount.getBalance(),
+				ERROR_TOLERANCE);
+		Assert.assertEquals(2_000.0, finalToAccount.getBalance(),
+				ERROR_TOLERANCE);
 
 	}
 
