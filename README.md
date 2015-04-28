@@ -55,3 +55,5 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Now, let's play with names of the test cases. Try changing names of the tests, e.g. `zzzz_testTrasnfer()` instead of `testTransfer()`. Run the tests! Were you able to reproduce test failure depending in which order tests were run? What happens if the test are run independently? How is that possible?
 * What happens when you rerun test independently? Tests compile, test results are inconclusive and test fails/passes based on the test case method name.
 * The order in which test cases will run is generally indeterministic. We could influence the ordering of tests.
+* We need to think of a better strategy to approach tests. Let's create setup and teardown methods to execute before and after each test.
+* We need to update ConfigurationService to provide `reset` method, and reset it every time a test is run. Tests compile and pass again.

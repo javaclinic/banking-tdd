@@ -2,17 +2,20 @@ package example.banking.services;
 
 import org.junit.Assert;
 import org.junit.Assume;
-import org.junit.FixMethodOrder;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
 import example.banking.dao.AccountDao;
 import example.banking.domain.Account;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BankingServiceTest {
 	
 	private static final double ERROR_TOLERANCE = 0.00_001;
+	
+	@Before
+	public void setup() {
+		ConfigurationService.reset();
+	}
 	
 	@Test
 	public void testHelloWorld() throws Exception {
@@ -20,7 +23,7 @@ public class BankingServiceTest {
 	}
 	
 	@Test
-	public void test_02_Transfer() throws Exception {
+	public void testTransfer() throws Exception {
 		
 		// Assemble - test setup
 		BankingService teller = ConfigurationService.getBankingService();
@@ -52,7 +55,7 @@ public class BankingServiceTest {
 	}
 	
 	@Test
-	public void test_01_AccountNotFoundInGet() throws Exception {
+	public void testAccountNotFoundInGet() throws Exception {
 		// Assemble - test setup
 		AccountDao dao = ConfigurationService.getAccountDao();
 		

@@ -8,15 +8,24 @@ import example.banking.dao.InMemoryAccountDao;
  */
 public class ConfigurationService {
 
-	private static BankingService bankingService = new SimpleBankingService();
-	private static AccountDao accountDao = new InMemoryAccountDao();
+	private static BankingService bankingService;
+	private static AccountDao accountDao;
 
+	static {
+		reset();
+	}
+	
 	public static BankingService getBankingService() {
 		return bankingService;
 	}
 
 	public static AccountDao getAccountDao() {
 		return accountDao;
+	}
+	
+	public static synchronized void reset() {
+		accountDao = new InMemoryAccountDao();
+		bankingService = new SimpleBankingService();
 	}
 
 }
