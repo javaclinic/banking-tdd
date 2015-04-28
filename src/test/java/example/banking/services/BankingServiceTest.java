@@ -18,7 +18,7 @@ public class BankingServiceTest {
 	}
 	
 	@Test
-	public void testTransfer() throws Exception {
+	public void zzzz_testTransfer() throws Exception {
 		
 		// Assemble - test setup
 		BankingService teller = ConfigurationService.getBankingService();
@@ -51,7 +51,20 @@ public class BankingServiceTest {
 	
 	@Test
 	public void testAccountNotFoundInGet() throws Exception {
-		Assume.assumeNoException(new UnsupportedOperationException("Not yet implemented"));
+		// Assemble - test setup
+		AccountDao dao = ConfigurationService.getAccountDao();
+		
+		// Test Fixture - setup test data
+		int accountId = 1;
+		
+		// Act - call business logic
+		Account account = dao.find(accountId);
+		
+		// Verify - assert the results are what we expect
+		Assert.assertNull(account);
+		
+		// Cleanup - test cleanup
+		
 	}
 	
 	@Test

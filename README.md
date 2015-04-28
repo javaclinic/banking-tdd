@@ -48,5 +48,9 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Suggestion 4: Use singleton for `AccountDao` instance.
 * Suggestion 5: Use configuration service, e.g. `example.banking.services.ConfigurationService`. Test compiles and passes.
 
-
-
+## Exercise #6 - Test Ordering
+* Let's implement other test, e.g. `testAccountNotFoundInGet()`.
+* Side discussion: Practically, we are testing `InMemoryAccountDao` implementation, which is not our intent. However, we know someone else will be writing DAO code soon, which will be different implementation than our `InMemoryAccountDao` testing implementation. This will make us think through the API. The team developing new DAO implementation will be able to take our unit tests, create integration tests and run them against their new DAO implementation. Thus, by writing these tests now, we are helping DAO developers define the contract.
+* Tests results might depend on the execution order of the tests!
+* Now, let's play with names of the test cases. Try changing names of the tests, e.g. `zzzz_testTrasnfer()` instead of `testTransfer()`. Run the tests! Were you able to reproduce test failure depending in which order tests were run? What happens if the test are run independently? How is that possible?
+* What happens when you rerun test independently? Tests compile, test results are inconclusive and test fails/passes based on the test case method name.
