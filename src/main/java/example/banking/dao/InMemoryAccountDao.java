@@ -1,25 +1,34 @@
 package example.banking.dao;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import example.banking.domain.Account;
 
 /**
  * InMemoryAccountDao uses in-memory Map to store accounts.
- * 
- * This implementation is a Singleton.
- * 
  */
 public class InMemoryAccountDao implements AccountDao {
 
-	private Map<Integer, Account> database = new HashMap<>();
-	private static AtomicInteger counter = new AtomicInteger(0);
+	private Map<Integer, Account> database;
+	private static int counter = 1;
+
+	/**
+	 * Default implementation of the internal database is synchronized HashMap.
+	 */
+	public InMemoryAccountDao() {
+		this.database = Collections
+				.synchronizedMap(new HashMap<Integer, Account>());
+	}
+
+	public InMemoryAccountDao(Map<Integer, Account> database) {
+		this.database = database;
+	}
 
 	@Override
-	public Account create(String owner, double balance) {
-		Integer id = counter.incrementAndGet();
+	public synchronized Account create(String owner, double balance) {
+		Integer id = counter++;
 		Account newAccount = new Account(id, owner, balance);
 		database.put(id, newAccount);
 		return newAccount;

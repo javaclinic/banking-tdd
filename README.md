@@ -57,3 +57,8 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * The order in which test cases will run is generally indeterministic. We could influence the ordering of tests.
 * We need to think of a better strategy to approach tests. Let's create setup and teardown methods to execute before and after each test.
 * We need to update ConfigurationService to provide `reset` method, and reset it every time a test is run. Tests compile and pass again.
+
+## Exercise #7 - Dependency Injection
+* Let's clean up our code, and make it more testable by using dependency injection.
+* Inject `AccountDao` into constructor of `SimpleBankingService`.
+* Let's clean up `InMemoryDao` as well, provide an alternative to inject the `Map<Integer,Account>` if needed into dao instance. Also, make `create(...)` synchronized.

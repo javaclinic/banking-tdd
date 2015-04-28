@@ -2,20 +2,15 @@ package example.banking.services;
 
 import org.junit.Assert;
 import org.junit.Assume;
-import org.junit.Before;
 import org.junit.Test;
 
 import example.banking.dao.AccountDao;
+import example.banking.dao.InMemoryAccountDao;
 import example.banking.domain.Account;
 
 public class BankingServiceTest {
 	
 	private static final double ERROR_TOLERANCE = 0.00_001;
-	
-	@Before
-	public void setup() {
-		ConfigurationService.reset();
-	}
 	
 	@Test
 	public void testHelloWorld() throws Exception {
@@ -26,8 +21,8 @@ public class BankingServiceTest {
 	public void testTransfer() throws Exception {
 		
 		// Assemble - test setup
-		BankingService teller = ConfigurationService.getBankingService();
-		AccountDao dao = ConfigurationService.getAccountDao();
+		AccountDao dao = new InMemoryAccountDao();
+		BankingService teller = new SimpleBankingService(dao);
 		
 		// Test Fixture - setup test data
 		double amount = 1000.0;
@@ -56,8 +51,9 @@ public class BankingServiceTest {
 	
 	@Test
 	public void testAccountNotFoundInGet() throws Exception {
+		
 		// Assemble - test setup
-		AccountDao dao = ConfigurationService.getAccountDao();
+		AccountDao dao = new InMemoryAccountDao();
 		
 		// Test Fixture - setup test data
 		int accountId = 1;

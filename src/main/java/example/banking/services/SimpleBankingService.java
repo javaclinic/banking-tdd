@@ -5,9 +5,15 @@ import example.banking.domain.Account;
 
 public class SimpleBankingService implements BankingService {
 	
+	private AccountDao dao;
+	
+	public SimpleBankingService(AccountDao dao) {
+		this.dao = dao;
+	}
+	
 	@Override
 	public void transfer(int fromAccountId, int toAccountId, double amount) {
-		AccountDao dao = ConfigurationService.getAccountDao();
+		
 		Account fromAccount = dao.find(fromAccountId);
 		Account toAccount = dao.find(toAccountId);
 		
@@ -23,4 +29,5 @@ public class SimpleBankingService implements BankingService {
 		dao.save(toAccount);
 		
 	}
+	
 }
