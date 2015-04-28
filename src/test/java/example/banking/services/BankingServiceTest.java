@@ -83,6 +83,7 @@ public class BankingServiceTest {
 			Assert.fail("Did not throw AccountNotFoundException.");
 		} catch (AccountNotFoundException e) {
 			Assert.assertNotNull(e);
+			Assert.assertEquals("Account " + nonExistingAccountId + " was not found.", e.getMessage());
 		}
 
 	}
