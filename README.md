@@ -98,3 +98,9 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * We could also ensure mock object does not call certain methods. Rewrite your test using `Mockito.never()`, and other `Mockity.any*()` calls.
 * Use static imports with `Mockito.*` and `Assert.*`.
 * Find more details online in Mockito API.
+
+## Exercise #11 - Mocking Objects with PowerMock
+* PowerMock framework replaces class loader, to that we can instrument the class to mock static and final fields.
+* Add back service locator `ConfigurationService` class with static methods and static fields.
+* Add new test class, e.g. `BankingServiceWithPowerMock`. Create new test method, e.g. `testTransferWithPowerMock()` that copies old `testTransfer()`. Instantiate dao and service objects using `ConfigurationService` static methods. Test compiles, test fails with error.
+* How do we mock objects that have static methods and final fields?
