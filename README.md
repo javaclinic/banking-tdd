@@ -114,3 +114,6 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 ## Exercise #12 - Testing with Spring Framework
 * Often times we use Spring Framework to wire up our components in our project. Spring Framework has a great support for testing.
 * Add support for Spring Framework in `pom.xml`.
+* Build Spring configuration to wire components, either XML or Java Spring configuration.
+* Rerun tests. Troubleshoot errors.
+
