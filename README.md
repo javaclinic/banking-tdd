@@ -94,3 +94,5 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Should the test fail if we forget to update data layer (database)? Mockito just ignores the call `AccountDao.save(...)` method to mock object. We should verify the interaction.
 * Intentionally introduce the bug by not saving accounts in `SimpleBankingService.transfer(...)` method. Test compiles, test fails.
 * Remove introduced bug. Test compiles, test passes.
+* We could use helper Mockito methods to describe and verify interaction. Rewrite your test using `Mockito.times(x)` and `Mockito.any()`.
+* We could also ensure mock object does not call certain methods. Rewrite your test using `Mockito.never()`, and other `Mockity.any*()` calls.

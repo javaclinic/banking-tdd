@@ -204,8 +204,10 @@ public class BankingServiceTest {
 
 		teller.transfer(fromAccountId, toAccountId, amount);
 
-		Mockito.verify(dao).save(fromAccount);
-		Mockito.verify(dao).save(toAccount);
+		// Mockito.verify(dao).save(fromAccount);
+		// Mockito.verify(dao).save(toAccount);
+		Mockito.verify(dao, Mockito.times(2)).save(Mockito.any(Account.class));
+		Mockito.verify(dao, Mockito.never()).create(Mockito.anyString(), Mockito.anyDouble());
 
 		Account finalFromAccount = dao.find(fromAccountId);
 		Account finalToAccount = dao.find(toAccountId);
