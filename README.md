@@ -65,7 +65,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Let's implement the other test as well, e.g. `testAccountIdIsNullIfNotInDatabase()`. We might need to update our `Account` class to include default constructor.
 * General formatting cleanup.
 
-# Exercise #8 - Adding Exceptions
+## Exercise #8 - Adding Exceptions
 * It would be great to handle unusual (exceptional) situations. Let's add `AccountNotFoundException`, start with test cases first. Implement empty exception for now.
 * We should add another test case for transferring money from an account that doesn't exist, and another for transferring money to account that doesn't exist, e.g. `testTransferMoneyFromNonExistingAccount()` and e.g. `testTransferMoneyToNonExistingAccount()`.
 * Now, we might want to move `AccountNotFoundException` from services layer to data layer. What's involved in changing the API? Does our code compile? Did our tests break? Fix the issues.
@@ -75,7 +75,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Add test case with negative transfer amounts.
 * Reject negative transfer amounts, e.g. throw IllegalArgumentException if amount is negative.
 
-# Exercise #9 - Refactoring
+## Exercise #9 - Refactoring
 * What's refactoring?
 * Why should we refactor?
 * When should we refactor?
@@ -85,3 +85,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Problems with refactoring?
 * When shouldn't you refactor?
 * Let's refactor our code, and move logic for adding funds to account, and withdrawing funds from account to the `Account` entity, to fix the `FeatureEnvy` smell.
+* Let's refactor our code again, use setters and getters for dealing with balances within `Account` entity.

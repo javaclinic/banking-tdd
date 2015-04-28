@@ -105,14 +105,19 @@ public class Account {
 				owner, balance);
 	}
 
-	public void withdrawFunds(double amount) throws InsufficientBalanceException {
-		if ( this.balance < amount )
+	public void withdrawFunds(double amount)
+			throws InsufficientBalanceException {
+		double fromBalance = this.getBalance();
+		if (fromBalance < amount)
 			throw new InsufficientBalanceException(this, amount);
-		this.balance -= amount;
+		fromBalance -= amount;
+		this.setBalance(fromBalance);
 	}
 
 	public void addFunds(double amount) {
-		this.balance += amount;
+		double toBalance = this.getBalance();
+		toBalance += amount;
+		this.setBalance(toBalance);
 	}
 
 }
