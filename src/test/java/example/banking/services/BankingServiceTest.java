@@ -1,7 +1,6 @@
 package example.banking.services;
 
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Test;
 
 import example.banking.dao.AccountDao;
@@ -19,7 +18,8 @@ public class BankingServiceTest {
 	}
 
 	@Test
-	public void testTransfer() throws AccountNotFoundException {
+	public void testTransfer() throws AccountNotFoundException,
+			InsufficientBalanceException {
 
 		// Assemble - test setup
 		AccountDao dao = new InMemoryAccountDao();
@@ -63,12 +63,14 @@ public class BankingServiceTest {
 		} catch (AccountNotFoundException e) {
 			Assert.assertNotNull(e);
 			Assert.assertEquals(accountId, e.getId().intValue());
-			Assert.assertEquals("Account " + accountId + " was not found.", e.getMessage());
+			Assert.assertEquals("Account " + accountId + " was not found.",
+					e.getMessage());
 		}
 	}
 
 	@Test
-	public void testTransferMoneyFromNonExistingAccount() {
+	public void testTransferMoneyFromNonExistingAccount()
+			throws InsufficientBalanceException {
 
 		AccountDao dao = new InMemoryAccountDao();
 		BankingService teller = new SimpleBankingService(dao);
@@ -85,13 +87,15 @@ public class BankingServiceTest {
 		} catch (AccountNotFoundException e) {
 			Assert.assertNotNull(e);
 			Assert.assertEquals(nonExistingAccountId, e.getId().intValue());
-			Assert.assertEquals("Account " + nonExistingAccountId + " was not found.", e.getMessage());
+			Assert.assertEquals("Account " + nonExistingAccountId
+					+ " was not found.", e.getMessage());
 		}
 
 	}
 
 	@Test
-	public void testTransferMoneyToNonExistingAccount() {
+	public void testTransferMoneyToNonExistingAccount()
+			throws InsufficientBalanceException {
 
 		AccountDao dao = new InMemoryAccountDao();
 		BankingService teller = new SimpleBankingService(dao);
@@ -108,15 +112,35 @@ public class BankingServiceTest {
 		} catch (AccountNotFoundException e) {
 			Assert.assertNotNull(e);
 			Assert.assertEquals(nonExistingAccountId, e.getId().intValue());
-			Assert.assertEquals("Account " + nonExistingAccountId + " was not found.", e.getMessage());
+			Assert.assertEquals("Account " + nonExistingAccountId
+					+ " was not found.", e.getMessage());
 		}
 
 	}
 
 	@Test
-	public void testInsufficientFunds() throws Exception {
-		Assume.assumeNoException(new UnsupportedOperationException(
-				"Not yet implemented"));
+	public void testInsufficientFunds() throws AccountNotFoundException {
+
+		AccountDao dao = new InMemoryAccountDao();
+		BankingService teller = new SimpleBankingService(dao);
+
+		double amount = 10_000.0;
+		Account fromAccount = dao.create("John Doe", 1_000.0);
+		int fromAccountId = fromAccount.getId();
+		Account toAccount = dao.create("Jane Doe", 1_000.0);
+		int toAccountId = toAccount.getId();
+
+		try {
+			teller.transfer(fromAccountId, toAccountId, amount);
+			Assert.fail("Did not throw InsufficientBalanceException.");
+		} catch (InsufficientBalanceException e) {
+			Assert.assertNotNull(e);
+			Assert.assertEquals(fromAccountId, e.getAccountId().intValue());
+			String expectedMessage = String.format(
+					"Unable to withdraw $%.2f from %s", amount, fromAccount);
+			Assert.assertEquals(expectedMessage, e.getMessage());
+		}
+
 	}
 
 }

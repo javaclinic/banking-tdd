@@ -15,8 +15,10 @@ public interface BankingService {
 	 * @param amount
 	 * @throws AccountNotFoundException
 	 *             if any of the source or target accounts does not exist
+	 * @throws InsufficientBalanceException
+	 *             if source account does not have sufficient funds
 	 */
 	void transfer(int fromAccountId, int toAccountId, double amount)
-			throws AccountNotFoundException;
+			throws AccountNotFoundException, InsufficientBalanceException;
 
 }

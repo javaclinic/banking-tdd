@@ -17,12 +17,14 @@ public class SimpleBankingService implements BankingService {
 
 	@Override
 	public void transfer(int fromAccountId, int toAccountId, double amount)
-			throws AccountNotFoundException {
+			throws AccountNotFoundException, InsufficientBalanceException {
 
 		Account fromAccount = dao.find(fromAccountId);
 		Account toAccount = dao.find(toAccountId);
 
 		double fromBalance = fromAccount.getBalance();
+		if (fromBalance < amount)
+			throw new InsufficientBalanceException(fromAccount, amount);
 		fromBalance -= amount;
 		fromAccount.setBalance(fromBalance);
 

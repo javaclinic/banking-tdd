@@ -71,3 +71,4 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * Now, we might want to move `AccountNotFoundException` from services layer to data layer. What's involved in changing the API? Does our code compile? Did our tests break? Fix the issues.
 * Let's add some more details to our `AccountNotFoundException`. Typical thing to do is instantiate an exception with some meaningful message. Try it out. What are some down sides of this approach?
 * Better approach is to initialize exception with objects it needs to build a message, to enforce consistent message across the application. The result is a better API overall. Test compiles, test passes.
+* Let's add support for additional exception, e.g. `InsufficientAccountBalance`. Update test cases first. Update data layer and service layer. Test compiles, test passes.
