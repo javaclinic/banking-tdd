@@ -7,7 +7,8 @@ import java.util.Map;
 import example.banking.domain.Account;
 
 /**
- * InMemoryAccountDao uses in-memory Map to store accounts.
+ * InMemoryAccountDao is a in-memory implementation of AccountDao. It uses
+ * in-memory Map to store accounts.
  */
 public class InMemoryAccountDao implements AccountDao {
 

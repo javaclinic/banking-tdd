@@ -7,20 +7,21 @@ import example.banking.domain.Account;
  * 
  */
 public interface AccountDao {
-	
+
 	/**
-	 * Creates a new account in the data layer. The data layer will assign a new id.
+	 * Creates a new account in the data layer. The data layer will assign a new
+	 * id.
 	 */
 	Account create(String owner, double balance);
-	
+
 	/**
 	 * Retrieves the account from the data layer with the given primary key.
 	 */
 	Account find(int id);
-	
+
 	/**
 	 * Updates the account (or saves new one if one doesn't exist).
 	 */
 	void save(Account account);
-	
+
 }
