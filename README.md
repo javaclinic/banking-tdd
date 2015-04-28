@@ -110,3 +110,7 @@ This is a Test-Driven Development (TDD) practice project that walks you through 
 * User `PowerMock.mockStatic(...)` to mock static methods.
 * Feed real implementations for now, just to test if the PowerMock-ing works.
 * Try removing any of two annotations, and observe the error messages.
+
+## Exercise #12 - Testing with Spring Framework
+* Often times we use Spring Framework to wire up our components in our project. Spring Framework has a great support for testing.
+* Add support for Spring Framework in `pom.xml`.
